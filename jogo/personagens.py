@@ -1,0 +1,1 @@
+# esse py é responsável pela caracterização dos personagens
