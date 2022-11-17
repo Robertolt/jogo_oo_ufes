@@ -1,15 +1,8 @@
 # este arquivo será responsável por rodar a tela do jogo
 import pygame
 import sys
-
-
-class ConfigJogo:
-    LARGURA_TELA = 640
-    ALTURA_TELA = 480
-    VELOCIDADE_PERSONAGEM = 0.2
-    VELOCIDADE_MINIONS = 0.1
-    POS_INICIAL_PERSONAGENS = (LARGURA_TELA // 2, ALTURA_TELA // 2)
-    TAMANHO_FONTE = 48
+from config_jogo import ConfigJogo
+from cena_inicial import CenaInicial
 
 
 class Jogo:
@@ -22,7 +15,12 @@ class Jogo:
 
     def rodar(self):
 
+        # cria a cena inicial
+        cena = CenaInicial(self.tela)
+        # fica na cena ate o usuario pressionar enter
+        cena.rodar()
         # enquanto a janela nao for fechada
+
         while True:
             self.tratamento_de_eventos()
             # self.atualiza_estado()
