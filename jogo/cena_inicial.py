@@ -23,7 +23,8 @@ class CenaInicial:
             f'Salve o planeta do lixo maldoso'
             f' enquanto ainda há tempo', True, ConfigJogo.COR_TITULO)
         self.subtitulo_2 = font_subtitulo.render(
-            f'Devido a grande quantidade de lixo com destinação incorreta, houve o superaquecimento e, também a '
+            f'Devido a grande quantidade de lixo com destinação incorreta, houve o superaquecimento do planeta e, '
+            f'também a '
             f'impossibilidade das correntes marítimas de continuarem a fluir. É seu dever destruir o lixo que sobrou '
             f'e salvar o planete ', True, ConfigJogo.COR_TITULO)
 
