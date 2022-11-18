@@ -23,10 +23,10 @@ class CenaInicial:
             f'Salve o planeta do lixo maldoso'
             f' enquanto ainda há tempo', True, ConfigJogo.COR_TITULO)
         self.subtitulo_2 = font_subtitulo.render(
-            f'Devido a grande quantidade de lixo com destinação incorreta, houve o superaquecimento do planeta e, '
-            f'também a '
-            f'impossibilidade das correntes marítimas de continuarem a fluir. É seu dever destruir o lixo que sobrou '
-            f'e salvar o planete ', True, ConfigJogo.COR_TITULO)
+            f'Devido a grande quantidade de lixo com destinação incorreta, '
+            f'houve o superaquecimento do planeta. ', True, ConfigJogo.COR_TITULO)
+        self.subtitulo_3 = font_subtitulo.render(
+            f' É seu dever destruir o lixo que sobrou e salvar o planeta ', True, ConfigJogo.COR_TITULO)
 
         # variaveis usadas para fazer o subtitulo piscar
         self.cronometro = Cronometro()
@@ -62,6 +62,7 @@ class CenaInicial:
         self.desenha_titulo(self.tela)
         self.desenha_subtitulo(self.tela)
         self.desenha_subtitulo_2(self.tela)
+        self.desenha_subtitulo_3(self.tela)
         pygame.display.flip()
 
     def desenha_titulo(self, tela):
@@ -87,3 +88,10 @@ class CenaInicial:
         py = (0.2 * ConfigJogo.ALTURA_TELA // 2) + \
              (self.subtitulo.get_size()[1] * 4.5)
         tela.blit(self.subtitulo_2, (px, py))
+
+    def desenha_subtitulo_3(self, tela):
+        px = ConfigJogo.LARGURA_TELA // 2 - \
+             self.subtitulo_3.get_size()[0] // 2
+        py = (0.2 * ConfigJogo.ALTURA_TELA // 2) + \
+             (self.subtitulo_2.get_size()[1] * 6.0)
+        tela.blit(self.subtitulo_3, (px, py))
