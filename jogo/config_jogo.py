@@ -1,4 +1,5 @@
 class ConfigJogo:
+    ALTURA_PERSONAGEM = None
     COR_TITULO = (0, 0, 0)
     FONTE_SUBTITULO = 36
     FONTE_TITULO = 72
