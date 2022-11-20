@@ -43,7 +43,7 @@ class CenaPrincipal:
             self.personagem1.mover_para_baixo()
         elif pg.key.get_pressed()[pg.K_a]:
             self.personagem1.mover_para_esquerda()
-        elif pg.key.get_pressed()[pg.K_a]:
+        elif pg.key.get_pressed()[pg.K_d]:
             self.personagem1.mover_para_direita()
         else:
             self.personagem1.parar()

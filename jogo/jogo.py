@@ -3,6 +3,7 @@ import pygame
 import sys
 from config_jogo import ConfigJogo
 from cena_inicial import CenaInicial
+from cena_principal import CenaPrincipal
 
 
 class Jogo:
@@ -22,31 +23,13 @@ class Jogo:
         # enquanto a janela nao for fechada
 
         while True:
-            self.tratamento_de_eventos()
-            # self.atualiza_estado()
-            self.desenha_na_tela()
+            # cria a cena principal do jogo
+            cena_principal = CenaPrincipal(self.tela)
+            # roda a cena ate' um dos jogadores ganhar ou
+            # chegar ao fim do jogo
+            cena_principal.rodar()
 
         # para cada evento recebido
 
-    def tratamento_de_eventos(self):
-        pygame.event.get()
-
-        # se for recebido o evento de fechar a janela (ex.: usuario clicou no 'x') ...
-        # evento de saída
-        if pygame.key.get_pressed()[pygame.K_ESCAPE]:
-            print("Encerrando o programa.")
-            sys.exit(0)
-
-    def desenha_na_tela(self):
-        # preenche a tela com branco
-        self.tela.fill((255, 255, 255))
-        # atualiza a tela
-        pygame.display.flip()
 
 
-def main():
-    Jogo().rodar()
-
-
-if __name__ == '__main__':
-    main()

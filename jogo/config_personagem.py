@@ -12,26 +12,28 @@ class Personagem:
 
     def __init__(self, posicao):
         self.posicao = posicao
-        self.velocidade = 0
+        self.velocidade_y = 0
+        self.velocidade_x = 0
 
     def mover_para_cima(self):
-        self.velocidade = -ConfigJogo.VELOCIDADE_PERSONAGEM
+        self.velocidade_y = -ConfigJogo.VELOCIDADE_PERSONAGEM_Y
 
     def mover_para_baixo(self):
-        self.velocidade = ConfigJogo.VELOCIDADE_PERSONAGEM
+        self.velocidade_y = ConfigJogo.VELOCIDADE_PERSONAGEM_Y
 
     def mover_para_esquerda(self):
-        self.velocidade = ConfigJogo.VELOCIDADE_PERSONAGEM
+        self.velocidade_x = ConfigJogo.VELOCIDADE_PERSONAGEM_X
 
     def mover_para_direita(self):
-        self.velocidade = - ConfigJogo.VELOCIDADE_PERSONAGEM
+        self.velocidade_x = - ConfigJogo.VELOCIDADE_PERSONAGEM_X
 
     def parar(self):
-        self.velocidade = 0
+        self.velocidade_y = 0
+        self.velocidade_x = 0
 
     def atualizar_posicao_y(self):
         x, y = self.posicao
-        novo_y = y + self.velocidade
+        novo_y = y + self.velocidade_y
 
         if (novo_y >= 0) and \
                 ((novo_y + ConfigJogo.ALTURA_PERSONAGEM) <= ConfigJogo.ALTURA_TELA):
@@ -39,7 +41,7 @@ class Personagem:
 
     def atualizar_posicao_x(self):
         x, y = self.posicao
-        novo_x = x + self.velocidade
+        novo_x = x + self.velocidade_x
         if (novo_x >= 0) and \
                 ((novo_x + ConfigJogo.LARGURA_PERSONAGEM) <= ConfigJogo.LARGURA_TELA):
             self.posicao = (novo_x, y)
