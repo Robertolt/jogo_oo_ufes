@@ -4,6 +4,7 @@ import sys
 from config_jogo import ConfigJogo
 from cena_inicial import CenaInicial
 from cena_principal import CenaPrincipal
+from cena_final import CenaFinal
 
 
 class Jogo:
@@ -29,7 +30,10 @@ class Jogo:
             # chegar ao fim do jogo
             cena_principal.rodar()
 
-        # para cada evento recebido
+            # cria a cena final do jogo
+            cena_final = CenaFinal(self.tela, cena_principal)
+            # fica na tela ate' o usuario digitar espaco
+            cena_final.rodar()
 
 
 

@@ -4,6 +4,7 @@ from cena_principal import CenaPrincipal
 
 from config_jogo import ConfigJogo
 from cronometro import Cronometro
+from minions import Minions
 
 
 class CenaFinal:
@@ -19,11 +20,16 @@ class CenaFinal:
         self.cronometro = Cronometro()
         self.mostrar_subtitulo = True
 
-        if self.cronometro.tempo_passado() > 0.1:
+        if self.cronometro.tempo_passado() == 0:
             self.titulo = font_titulo.render(
                 f'Fim De Jogo', True, ConfigJogo.COR_TITULO)
 
-            self.subtitulo = None
+            if Minions.qntde_minions == 0:
+                self.subtitulo = font_subtitulo.render(
+                f'Parabéns, você ganhou!', True, ConfigJogo.COR_TITULO)
+            else:
+                self.subtitulo = font_subtitulo.render(
+                    f'Você perdeu!!', True, ConfigJogo.COR_TITULO)
 
     def rodar(self):
         while not self.encerrada:
