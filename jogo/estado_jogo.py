@@ -24,16 +24,7 @@ class EstadoJogo:
             return False
 
     def desenha(self, tela: Surface):
-        self.desenha_placar(tela)
         self.desenha_tempo(tela)
-
-    def desenha_placar(self, tela: Surface):
-        g1 = 2
-        g2 = 2
-        img = self.font.render(f'{g1} x {g2}', True, ConfigJogo.COR_ESTADO)
-        px = ConfigJogo.LARGURA_TELA // 2 - img.get_size()[0] // 2
-        py = ConfigJogo.ALTURA_PLACAR
-        tela.blit(img, (px, py))
 
     def desenha_tempo(self, tela: Surface):
         tempo = ConfigJogo.DURACAO_PARTIDA - self.cronometro.tempo_passado()

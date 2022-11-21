@@ -13,8 +13,8 @@ class CenaPrincipal:
         self.tela = tela
 
         py = ConfigJogo.ALTURA_TELA // 2
-        px_esq = ConfigJogo.LARGURA_TELA//2 - 10
-        px_dir = ConfigJogo.LARGURA_TELA//2 + 10
+        px_esq = ConfigJogo.LARGURA_TELA//2 - 20
+        px_dir = ConfigJogo.LARGURA_TELA//2 + 20
 
         self.personagem1 = Personagem(posicao=(px_esq, py))
         self.personagem2 = Personagem(posicao=(px_dir, py))
@@ -42,9 +42,9 @@ class CenaPrincipal:
         elif pg.key.get_pressed()[pg.K_s]:
             self.personagem1.mover_para_baixo()
         elif pg.key.get_pressed()[pg.K_a]:
-            self.personagem1.mover_para_esquerda()
-        elif pg.key.get_pressed()[pg.K_d]:
             self.personagem1.mover_para_direita()
+        elif pg.key.get_pressed()[pg.K_d]:
+            self.personagem1.mover_para_esquerda()
         else:
             self.personagem1.parar()
 
