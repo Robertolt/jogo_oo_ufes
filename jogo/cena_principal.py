@@ -1,4 +1,5 @@
 import sys
+from random import random, randint
 from typing import Tuple
 import pygame as pg
 # from bola import Bola
@@ -6,6 +7,7 @@ import pygame as pg
 from config_jogo import ConfigJogo
 from config_personagem import Personagem
 from estado_jogo import EstadoJogo
+from minions import Minions
 
 
 class CenaPrincipal:
@@ -13,14 +15,15 @@ class CenaPrincipal:
         self.tela = tela
 
         py = ConfigJogo.ALTURA_TELA // 2
-        px_esq = ConfigJogo.LARGURA_TELA//2 - 20
-        px_dir = ConfigJogo.LARGURA_TELA//2 + 20
+        px_esq = ConfigJogo.LARGURA_TELA // 2 - 20
+        px_dir = ConfigJogo.LARGURA_TELA // 2 + 20
 
         self.personagem1 = Personagem(posicao=(px_esq, py))
         self.personagem2 = Personagem(posicao=(px_dir, py))
         # self.bola = Bola()
+        self.minions = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
+                                        randint(0, ConfigJogo.ALTURA_TELA)))
         self.estado = EstadoJogo()
-
         self.encerrada = False
 
     def rodar(self):
@@ -74,6 +77,7 @@ class CenaPrincipal:
         self.tela.fill((255, 255, 255))
         self.personagem1.desenha(self.tela)
         self.personagem2.desenha(self.tela)
+        self.minions.desenha(self.tela)
         # self.bola.desenha(self.tela)
         self.estado.desenha(self.tela)
         pg.display.flip()

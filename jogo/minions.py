@@ -14,11 +14,11 @@ class Minions:
     def seguir_personagens(self):
         pass
 
-    def desenha(self):
+    def desenha(self, tela):
         x = self.posicao[0]
         y = self.posicao[1]
-        l = ConfigJogo.LARGURA_PERSONAGEM
-        a = ConfigJogo.ALTURA_PERSONAGEM
+        l = ConfigJogo.LARGURA_MINION
+        a = ConfigJogo.ALTURA_MINION
         pygame.draw.rect(
             tela,
             ConfigJogo.COR_PERSONAGEM,
