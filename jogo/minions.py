@@ -11,9 +11,6 @@ class Minions:
         self.velocidade_y = 0
         self.velocidade_x = 0
 
-    def seguir_personagens(self):
-        pass
-
     def desenha(self, tela):
         x = self.posicao[0]
         y = self.posicao[1]
@@ -31,5 +28,3 @@ class Minions:
         """
         return self.posicao + (ConfigJogo.LARGURA_PERSONAGEM, ConfigJogo.ALTURA_PERSONAGEM)
 
-    def qntde_minions(self):
-        pass

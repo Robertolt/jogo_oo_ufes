@@ -23,6 +23,14 @@ class CenaPrincipal:
         # self.bola = Bola()
         self.minions = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
                                         randint(0, ConfigJogo.ALTURA_TELA)))
+        self.minions1 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
+                                        randint(0, ConfigJogo.ALTURA_TELA)))
+        self.minions2 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
+                                         randint(0, ConfigJogo.ALTURA_TELA)))
+        self.minions3 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
+                                         randint(0, ConfigJogo.ALTURA_TELA)))
+        self.minions4 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
+                                         randint(0, ConfigJogo.ALTURA_TELA)))
         self.estado = EstadoJogo()
         self.encerrada = False
 
@@ -78,6 +86,9 @@ class CenaPrincipal:
         self.personagem1.desenha(self.tela)
         self.personagem2.desenha(self.tela)
         self.minions.desenha(self.tela)
-        # self.bola.desenha(self.tela)
+        self.minions1.desenha(self.tela)
+        self.minions2.desenha(self.tela)
+        self.minions3.desenha(self.tela)
+        self.minions4.desenha(self.tela)
         self.estado.desenha(self.tela)
         pg.display.flip()
