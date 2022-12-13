@@ -3,7 +3,7 @@ from config_personagem import Personagem
 from config_jogo import ConfigJogo
 
 
-class Minions:
+class Minions(Personagem):
     def __init__(self, posicao):
         self.dano = ConfigJogo.DANO_MINIONS
         self.vida = ConfigJogo.VIDA_MINIONS
@@ -27,4 +27,8 @@ class Minions:
             no pygame, i.e., como uma tupla do tipo (px, py, largura, altura).
         """
         return self.posicao + (ConfigJogo.LARGURA_PERSONAGEM, ConfigJogo.ALTURA_PERSONAGEM)
+
+    def seguir_personagem(self):
+        xp, yp = super().posicao
+        xm, ym = self.posicao
 
