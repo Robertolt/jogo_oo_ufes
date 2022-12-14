@@ -65,7 +65,19 @@ class Personagem:
         return self.posicao + (ConfigJogo.LARGURA_PERSONAGEM, ConfigJogo.ALTURA_PERSONAGEM)
 
     def executar_ataque(self):
-        self.dano = Personagem.DANO
+        pass
+        # self.dano = Personagem.DANO
+
+    def desenha_ataque(self, tela):
+        x = self.posicao[0]
+        y = self.posicao[1]
+        l = ConfigJogo.LARGURA_PERSONAGEM * 1.3
+        a = ConfigJogo.ALTURA_PERSONAGEM * 1.3
+        pygame.draw.rect(
+            tela,
+            ConfigJogo.COR_ATAQUE,
+            pygame.rect.Rect(x, y, l, a)
+        )
 
 
 

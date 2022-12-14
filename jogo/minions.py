@@ -3,41 +3,54 @@ from config_personagem import Personagem
 from config_jogo import ConfigJogo
 
 
-class Minions(Personagem):
+class Minions:
     def __init__(self, posicao):
         self.dano = ConfigJogo.DANO_MINIONS
         self.vida = ConfigJogo.VIDA_MINIONS
         self.posicao = posicao
-        self.velocidade_y = 0
-        self.velocidade_x = 0
-        super().__init__(posicao)
+        self.velocidade_y = ConfigJogo.VELOCIDADE_MINIONS_Y
+        self.velocidade_x = ConfigJogo.VELOCIDADE_MINIONS_X
 
-    def mover_para(self, Personagem):
-        pass
-
-    def seguir_personagem_x(self):
-        xp, yp = super().mostrar_a_posicao()  # coordenadas personagens
-        xm, ym = self.posicao  # coordenadas minions
-        novo_xm = xm + self.velocidade_x
-        if xp >= xm:
-            while xm < xp:
-                self.posicao = (novo_xm, ym)
+    def mover_para(self, p):
+        xp, yp = p.posicao
+        xm, ym = self.posicao
+        if xp > xm:
+            xm += self.velocidade_x
+            self.posicao = (xm, ym)
         else:
-            while xm > xp:
-                novo_xm = xm - self.velocidade_x
-                self.posicao = (novo_xm, ym)
+            xm -= self.velocidade_x
+            self.posicao = (xm, ym)
 
-    def seguir_personagem_y(self):
-        xp, yp = super().mostrar_a_posicao()  # coordenadas personagens
-        xm, ym = self.posicao  # coordenadas minions
-        novo_ym = ym + self.velocidade_y
-        if xp >= xm:
-            while ym < yp:
-                self.posicao = (xm, novo_ym)
+        if yp > ym:
+            ym += self.velocidade_y
+            self.posicao = (xm, ym)
         else:
-            while ym > yp:
-                novo_ym = ym - self.velocidade_y
-                self.posicao = (xm, novo_ym)
+            ym -= self.velocidade_y
+            self.posicao = (xm, ym)
+
+    # def seguir_personagem_x(self):
+    #     xp, yp = super().mostrar_a_posicao()  # coordenadas personagens
+    #     xm, ym = self.posicao  # coordenadas minions
+    #     novo_xm = xm + self.velocidade_x
+    #     if xp >= xm:
+    #         while xm < xp:
+    #             self.posicao = (novo_xm, ym)
+    #     else:
+    #         while xm > xp:
+    #             novo_xm = xm - self.velocidade_x
+    #             self.posicao = (novo_xm, ym)
+    #
+    # def seguir_personagem_y(self):
+    #     xp, yp = super().mostrar_a_posicao()  # coordenadas personagens
+    #     xm, ym = self.posicao  # coordenadas minions
+    #     novo_ym = ym + self.velocidade_y
+    #     if xp >= xm:
+    #         while ym < yp:
+    #             self.posicao = (xm, novo_ym)
+    #     else:
+    #         while ym > yp:
+    #             novo_ym = ym - self.velocidade_y
+    #             self.posicao = (xm, novo_ym)
 
     def desenha(self, tela):
         x = self.posicao[0]

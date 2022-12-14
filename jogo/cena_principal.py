@@ -2,7 +2,6 @@ import sys
 from random import random, randint
 from typing import Tuple
 import pygame as pg
-# from bola import Bola
 
 from config_jogo import ConfigJogo
 from config_personagem import Personagem
@@ -36,24 +35,24 @@ class CenaPrincipal:
         self.encerrada = False
 
         # Vetores pro minion
-        self.vetor1 = Vetor(self.personagem1.posicao, self.minions.posicao)
-        self.vetor2 = Vetor(self.personagem2.posicao, self.minions.posicao)
+        self.vetor1 = Vetor(self.personagem1, self.minions)
+        self.vetor2 = Vetor(self.personagem2, self.minions)
 
         # Vetores pro minion1
-        self.vetor3 = Vetor(self.personagem1.posicao, self.minions1.posicao)
-        self.vetor4 = Vetor(self.personagem2.posicao, self.minions1.posicao)
+        self.vetor3 = Vetor(self.personagem1, self.minions1)
+        self.vetor4 = Vetor(self.personagem2, self.minions1)
 
         # Vetores pro minion2
-        self.vetor5 = Vetor(self.personagem1.posicao, self.minions2.posicao)
-        self.vetor6 = Vetor(self.personagem2.posicao, self.minions2.posicao)
+        self.vetor5 = Vetor(self.personagem1, self.minions2)
+        self.vetor6 = Vetor(self.personagem2, self.minions2)
 
         # Vetores pro minion3
-        self.vetor7 = Vetor(self.personagem1.posicao, self.minions3.posicao)
-        self.vetor8 = Vetor(self.personagem2.posicao, self.minions3.posicao)
+        self.vetor7 = Vetor(self.personagem1, self.minions3)
+        self.vetor8 = Vetor(self.personagem2, self.minions3)
 
         # Vetores pro minion2
-        self.vetor9 = Vetor(self.personagem1.posicao, self.minions4.posicao)
-        self.vetor10 = Vetor(self.personagem2.posicao, self.minions4.posicao)
+        self.vetor9 = Vetor(self.personagem1, self.minions4)
+        self.vetor10 = Vetor(self.personagem2, self.minions4)
 
     def rodar(self):
         while not self.encerrada:
@@ -80,6 +79,10 @@ class CenaPrincipal:
         else:
             self.personagem1.parar()
 
+        # executar ataque personagem 1
+        if pg.key.get_pressed()[pg.K_q]:
+            self.personagem1.executar_ataque()
+
         # personagem 2
         if pg.key.get_pressed()[pg.K_i]:
             self.personagem2.mover_para_cima()
@@ -92,10 +95,39 @@ class CenaPrincipal:
         else:
             self.personagem2.parar()
 
-        if self.vetor1 > self.vetor2:
+        # executar ataque personagem 2
+        if pg.key.get_pressed()[pg.K_q]:
+            self.personagem2.executar_ataque()
+
+        # seguir para minion
+        if self.vetor1.calcular() < self.vetor2.calcular():
             self.minions.mover_para(self.personagem1)
         else:
             self.minions.mover_para(self.personagem2)
+
+        # seguir para minion1
+        if self.vetor3.calcular() < self.vetor4.calcular():
+            self.minions1.mover_para(self.personagem1)
+        else:
+            self.minions1.mover_para(self.personagem2)
+
+        # seguir para minion2
+        if self.vetor5.calcular() < self.vetor6.calcular():
+            self.minions2.mover_para(self.personagem1)
+        else:
+            self.minions2.mover_para(self.personagem2)
+
+        # seguir para minion3
+        if self.vetor7.calcular() < self.vetor8.calcular():
+            self.minions3.mover_para(self.personagem1)
+        else:
+            self.minions3.mover_para(self.personagem2)
+
+        # seguir para minion3
+        if self.vetor9.calcular() < self.vetor10.calcular():
+            self.minions4.mover_para(self.personagem1)
+        else:
+            self.minions4.mover_para(self.personagem2)
 
     def atualiza_estado(self):
         self.personagem1.atualizar_posicao_x()
@@ -103,22 +135,6 @@ class CenaPrincipal:
 
         self.personagem2.atualizar_posicao_x()
         self.personagem2.atualizar_posicao_y()
-
-        self.minions.atualizar_posicao_x()
-        self.minions.atualizar_posicao_y()
-
-        self.minions1.atualizar_posicao_x()
-        self.minions1.atualizar_posicao_y()
-
-        self.minions2.atualizar_posicao_x()
-        self.minions2.atualizar_posicao_y()
-
-        self.minions3.atualizar_posicao_x()
-        self.minions3.atualizar_posicao_y()
-
-        self.minions4.atualizar_posicao_x()
-        self.minions4.atualizar_posicao_y()
-
 
         if self.estado.jogo_terminou():
             self.encerrada = True
@@ -133,4 +149,13 @@ class CenaPrincipal:
         self.minions3.desenha(self.tela)
         self.minions4.desenha(self.tela)
         self.estado.desenha(self.tela)
+
+        # desenha ataque personagem 1
+        if pg.key.get_pressed()[pg.K_q]:
+            self.personagem1.desenha_ataque(self.tela)
+
+        # desenha ataque personagem 2
+        if pg.key.get_pressed()[pg.K_u]:
+            self.personagem2.desenha_ataque(self.tela)
+
         pg.display.flip()
