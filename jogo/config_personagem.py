@@ -13,6 +13,9 @@ class Personagem:
         self.velocidade_x = 0
         self.dano = 0
 
+    def mostrar_a_posicao(self):
+        return self.posicao
+
     def mover_para_cima(self):
         self.velocidade_y = -ConfigJogo.VELOCIDADE_PERSONAGEM_Y
 

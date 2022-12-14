@@ -8,6 +8,7 @@ from config_jogo import ConfigJogo
 from config_personagem import Personagem
 from estado_jogo import EstadoJogo
 from minions import Minions
+from vetor import Vetor
 
 
 class CenaPrincipal:
@@ -24,7 +25,7 @@ class CenaPrincipal:
         self.minions = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
                                         randint(0, ConfigJogo.ALTURA_TELA)))
         self.minions1 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
-                                        randint(0, ConfigJogo.ALTURA_TELA)))
+                                         randint(0, ConfigJogo.ALTURA_TELA)))
         self.minions2 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
                                          randint(0, ConfigJogo.ALTURA_TELA)))
         self.minions3 = Minions(posicao=(randint(0, ConfigJogo.LARGURA_TELA),
@@ -33,6 +34,26 @@ class CenaPrincipal:
                                          randint(0, ConfigJogo.ALTURA_TELA)))
         self.estado = EstadoJogo()
         self.encerrada = False
+
+        # Vetores pro minion
+        self.vetor1 = Vetor(self.personagem1.posicao, self.minions.posicao)
+        self.vetor2 = Vetor(self.personagem2.posicao, self.minions.posicao)
+
+        # Vetores pro minion1
+        self.vetor3 = Vetor(self.personagem1.posicao, self.minions1.posicao)
+        self.vetor4 = Vetor(self.personagem2.posicao, self.minions1.posicao)
+
+        # Vetores pro minion2
+        self.vetor5 = Vetor(self.personagem1.posicao, self.minions2.posicao)
+        self.vetor6 = Vetor(self.personagem2.posicao, self.minions2.posicao)
+
+        # Vetores pro minion3
+        self.vetor7 = Vetor(self.personagem1.posicao, self.minions3.posicao)
+        self.vetor8 = Vetor(self.personagem2.posicao, self.minions3.posicao)
+
+        # Vetores pro minion2
+        self.vetor9 = Vetor(self.personagem1.posicao, self.minions4.posicao)
+        self.vetor10 = Vetor(self.personagem2.posicao, self.minions4.posicao)
 
     def rodar(self):
         while not self.encerrada:
@@ -71,12 +92,33 @@ class CenaPrincipal:
         else:
             self.personagem2.parar()
 
+        if self.vetor1 > self.vetor2:
+            self.minions.mover_para(self.personagem1)
+        else:
+            self.minions.mover_para(self.personagem2)
+
     def atualiza_estado(self):
         self.personagem1.atualizar_posicao_x()
         self.personagem1.atualizar_posicao_y()
+
         self.personagem2.atualizar_posicao_x()
         self.personagem2.atualizar_posicao_y()
-        #  self.bola.atualizar_posicao()
+
+        self.minions.atualizar_posicao_x()
+        self.minions.atualizar_posicao_y()
+
+        self.minions1.atualizar_posicao_x()
+        self.minions1.atualizar_posicao_y()
+
+        self.minions2.atualizar_posicao_x()
+        self.minions2.atualizar_posicao_y()
+
+        self.minions3.atualizar_posicao_x()
+        self.minions3.atualizar_posicao_y()
+
+        self.minions4.atualizar_posicao_x()
+        self.minions4.atualizar_posicao_y()
+
 
         if self.estado.jogo_terminou():
             self.encerrada = True
