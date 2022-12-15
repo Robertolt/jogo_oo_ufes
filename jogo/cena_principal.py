@@ -129,6 +129,41 @@ class CenaPrincipal:
         else:
             self.minions4.mover_para(self.personagem2)
 
+        # se o minion encostar no personagem, o personagem tomará dano
+        if self.minions.encostou_no_personagem(self.personagem1):
+            self.personagem1.tomar_dano()
+
+        if self.minions.encostou_no_personagem(self.personagem2):
+            self.personagem2.tomar_dano()
+
+        # se o minion1 encostar no personagem, o personagem tomará dano
+        if self.minions1.encostou_no_personagem(self.personagem1):
+            self.personagem1.tomar_dano()
+
+        if self.minions1.encostou_no_personagem(self.personagem2):
+            self.personagem2.tomar_dano()
+
+        # se o minion2 encostar no personagem, o personagem tomará dano
+        if self.minions2.encostou_no_personagem(self.personagem1):
+            self.personagem1.tomar_dano()
+
+        if self.minions2.encostou_no_personagem(self.personagem2):
+            self.personagem2.tomar_dano()
+
+        # se o minion3 encostar no personagem, o personagem tomará dano
+        if self.minions3.encostou_no_personagem(self.personagem1):
+            self.personagem1.tomar_dano()
+
+        if self.minions3.encostou_no_personagem(self.personagem2):
+            self.personagem2.tomar_dano()
+
+        # se o minion4 encostar no personagem, o personagem tomará dano
+        if self.minions4.encostou_no_personagem(self.personagem1):
+            self.personagem1.tomar_dano()
+
+        if self.minions4.encostou_no_personagem(self.personagem2):
+            self.personagem2.tomar_dano()
+
     def atualiza_estado(self):
         self.personagem1.atualizar_posicao_x()
         self.personagem1.atualizar_posicao_y()
@@ -139,7 +174,16 @@ class CenaPrincipal:
         if self.estado.jogo_terminou():
             self.encerrada = True
 
+    def retorna_vida_personagem1(self):
+        return self.personagem1.mostrar_vida()
+
+    def retorna_vida_personagem2(self):
+        return self.personagem2.mostrar_vida()
+
     def desenha(self):
+        imagem_fundo = pg.image.load('C:/Users/55279/PycharmProjects/jogo_oo_ufes/sprites/mapa3.png')
+        self.tela.blit(imagem_fundo, (0, 0))
+        minion = pg.image.load('C:/Users/55279/PycharmProjects/jogo_oo_ufes/sprites/single.png')
         self.tela.fill((255, 255, 255))
         self.personagem1.desenha(self.tela)
         self.personagem2.desenha(self.tela)
@@ -149,6 +193,13 @@ class CenaPrincipal:
         self.minions3.desenha(self.tela)
         self.minions4.desenha(self.tela)
         self.estado.desenha(self.tela)
+        self.personagem1.desenha_vida(self.tela)
+        self.personagem2.desenha_vida(self.tela)
+        self.tela.blit(minion, (self.minions.posicao[0] - 5, self.minions.posicao[1] - 5))
+        self.tela.blit(minion, (self.minions2.posicao[0] - 5, self.minions2.posicao[1] - 5))
+        self.tela.blit(minion, (self.minions3.posicao[0] - 5, self.minions3.posicao[1] - 5))
+        self.tela.blit(minion, (self.minions4.posicao[0] - 5, self.minions4.posicao[1] - 5))
+        self.tela.blit(minion, (self.minions1.posicao[0] - 5, self.minions1.posicao[1] - 5))
 
         # desenha ataque personagem 1
         if pg.key.get_pressed()[pg.K_q]:

@@ -68,3 +68,11 @@ class Minions:
             no pygame, i.e., como uma tupla do tipo (px, py, largura, altura).
         """
         return self.posicao + (ConfigJogo.LARGURA_PERSONAGEM, ConfigJogo.ALTURA_PERSONAGEM)
+
+    def encostou_no_personagem(self, p):
+        xp, yp = p.posicao
+        xm, ym = self.posicao
+        if (xm < xp) and (xp < xm + 10) and (ym < yp) and (yp < ym + 10):
+            return True
+
+

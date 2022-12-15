@@ -1,6 +1,8 @@
 class ConfigJogo:
     COR_TITULO = (0, 0, 0)
+    COR_VIDA = (0, 200, 0)
     FONTE_SUBTITULO = 36
+    FONTE_VIDA = 20
     FONTE_TITULO = 72
     LARGURA_TELA = 1280
     ALTURA_TELA = 640

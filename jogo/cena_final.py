@@ -5,6 +5,7 @@ from cena_principal import CenaPrincipal
 from config_jogo import ConfigJogo
 from cronometro import Cronometro
 from minions import Minions
+from config_personagem import Personagem
 
 
 class CenaFinal:
@@ -19,6 +20,7 @@ class CenaFinal:
         # variaveis usadas para fazer o subtitulo piscar
         self.cronometro = Cronometro()
         self.mostrar_subtitulo = True
+        self.cena_principal = CenaPrincipal(tela)
 
         if self.cronometro.tempo_passado() == 0:
             self.titulo = font_titulo.render(
@@ -26,10 +28,14 @@ class CenaFinal:
 
             if Minions.qntde_minions == 0:
                 self.subtitulo = font_subtitulo.render(
-                f'Parabéns, você ganhou!', True, ConfigJogo.COR_TITULO)
+                    f'Parabéns, você ganhou!', True, ConfigJogo.COR_TITULO)
             else:
                 self.subtitulo = font_subtitulo.render(
                     f'Você perdeu!!', True, ConfigJogo.COR_TITULO)
+
+        if (self.cena_principal.retorna_vida_personagem1() <= 0) or (self.cena_principal.retorna_vida_personagem2() <= 0):
+            self.subtitulo = font_subtitulo.render(
+                f'Você perdeu!!', True, ConfigJogo.COR_TITULO)
 
     def rodar(self):
         while not self.encerrada:
