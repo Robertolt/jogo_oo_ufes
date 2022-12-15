@@ -174,16 +174,10 @@ class CenaPrincipal:
         if self.estado.jogo_terminou():
             self.encerrada = True
 
-    def retorna_vida_personagem1(self):
-        return self.personagem1.mostrar_vida()
-
-    def retorna_vida_personagem2(self):
-        return self.personagem2.mostrar_vida()
-
     def desenha(self):
-        imagem_fundo = pg.image.load('C:/Users/55279/PycharmProjects/jogo_oo_ufes/sprites/mapa3.png')
-        self.tela.blit(imagem_fundo, (0, 0))
-        minion = pg.image.load('C:/Users/55279/PycharmProjects/jogo_oo_ufes/sprites/single.png')
+        # imagem_fundo = pg.image.load('C:/Users/55279/PycharmProjects/jogo_oo_ufes/sprites/mapa3.png')
+        # self.tela.blit(imagem_fundo, (0, 0))
+        # minion = pg.image.load('C:/Users/55279/PycharmProjects/jogo_oo_ufes/sprites/single.png')
         self.tela.fill((255, 255, 255))
         self.personagem1.desenha(self.tela)
         self.personagem2.desenha(self.tela)
@@ -195,11 +189,7 @@ class CenaPrincipal:
         self.estado.desenha(self.tela)
         self.personagem1.desenha_vida(self.tela)
         self.personagem2.desenha_vida(self.tela)
-        self.tela.blit(minion, (self.minions.posicao[0] - 5, self.minions.posicao[1] - 5))
-        self.tela.blit(minion, (self.minions2.posicao[0] - 5, self.minions2.posicao[1] - 5))
-        self.tela.blit(minion, (self.minions3.posicao[0] - 5, self.minions3.posicao[1] - 5))
-        self.tela.blit(minion, (self.minions4.posicao[0] - 5, self.minions4.posicao[1] - 5))
-        self.tela.blit(minion, (self.minions1.posicao[0] - 5, self.minions1.posicao[1] - 5))
+
 
         # desenha ataque personagem 1
         if pg.key.get_pressed()[pg.K_q]:
