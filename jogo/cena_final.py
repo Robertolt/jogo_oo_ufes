@@ -20,6 +20,7 @@ class CenaFinal:
         # variaveis usadas para fazer o subtitulo piscar
         self.cronometro = Cronometro()
         self.mostrar_subtitulo = True
+        self.cena_principal = CenaPrincipal(tela)
 
         if self.cronometro.tempo_passado() == 0:
             self.titulo = font_titulo.render(
@@ -32,7 +33,7 @@ class CenaFinal:
             #     self.subtitulo = font_subtitulo.render(
             #         f'Você perdeu!!', True, ConfigJogo.COR_TITULO)
 
-        if Personagem.mostrar_vida(cena_principal.personagem1) <= 0:
+        if Personagem.mostrar_vida(self.cena_principal.personagem1) <= 0:
             self.subtitulo = font_subtitulo.render(
                 f'Você perdeu!!', True, ConfigJogo.COR_TITULO)
 
